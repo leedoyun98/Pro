@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+            table{border: 1px solid black}
+            table tr {border: 1px solid black}
+            table tr td{border: 1px solid black}
+    </style>
+</head>
+<body>
+    <h1>글 쓰기</h1>
+    <a href="#" id="home">홈으로</a>
+    <form>
+        <table>
+            <tr>
+                <td><input type="text" id="writerId">작성자</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="title">제목</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="content">내용</td>
+            </tr>
+            <tr>
+                <td colspan="2"><button id="writer-btn">제출</button>
+                                <button id="cancel-btn">취소</button></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+<script>
+    $('#home').click(e=>{location.href = "/"})
+    $('#writer-btn').click(e=>{
+        alert('동작')
+        $.ajax({
+            url:'/jigu',
+            type:'POST',
+            data:JSON.stringify({
+                writerId: $('#writerId').val(),
+                title: $('#title').val(),
+                content: $('#content').val()
+            }),
+            dataType:'json',
+            contentType:'application/json',
+            success: d=>{
+                if(d.message === 'SUCCESS'){
+                    alert('성공')
+                }else{
+                    alert('실패')
+                }
+            },
+            error: e=>{`작성실패: ${e}`}
+        })
+    })
+</script>
+</html>
