@@ -4,8 +4,18 @@
 <mapper namespace="com.example.demo.repositories.JiguRepository">
    <insert id="insert" parameterType="com.example.demo.domains.JiguDto">
    <!-- writerId, title, content, regDate, count, jiguNum -->
-        insert into jigus(writer_id, title, content, reg_date,  count)
+        insert into jigus(writer_id, title, content, reg_date, count)
         values (#{writerId}, #{title}, #{content}, ${regDate}, #{count})
     </insert>
+    <select id="selectAll" resultType="com.example.demo.domains.JiguDto">
+    select writer_id writerId, title, content, reg_date regDate, count, jigu_num jiguNum 
+    from jigus
+    </select>
+    <select id="selectById" resultType="com.example.demo.domains.JiguDto" 
+                         parameterType="string" >
+     select jigu_num jiguNum, writer_id writerId, title, content, reg_date regDate, count 
+     from jigus
+     where jigu_num like #{value}
+   </select>
    
 </mapper>

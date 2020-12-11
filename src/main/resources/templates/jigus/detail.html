@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{border: 1px solid black}
+        table tr {border: 1px solid black}
+        table tr td{border: 1px solid black}
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>상세보기</h1>
+    <a href="#" id="home">홈으로</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center" id="writerId">글번호</th>
+                <th class="text-center" id="title">제목</th>
+                <th class="text-center" id="">글쓴이</th>
+                <th class="text-center" id="content">내용</th>
+                <th class="text-center" id="regDate">작성일</th>
+                <th class="text-center" id="count">조회수</th>
+                <th class="text-center" id="jiguNum">게시글번호</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+            
+        </tbody>
+    </table>
+</body>
+<script>
+    $('#home').click(e => { location.href="/"})
+    $.getJSON(`/jigus/${localStorage.getItem('key')}`,d=>{
+        $('#writerId').text(d.writerId),
+        $('#title').text(d.title),
+        $('#content').text(d.content),
+        $('#regDate').text(d.regDate),
+        $('#count').text(d.count),
+        $('#jiguNum').text(d.jiguNum)
+
+        
+
+    })
+    
+</script>
+</html>

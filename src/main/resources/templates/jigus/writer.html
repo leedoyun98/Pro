@@ -36,9 +36,8 @@
 <script>
     $('#home').click(e=>{location.href = "/"})
     $('#writer-btn').click(e=>{
-        alert('동작')
         $.ajax({
-            url:'/jigu',
+            url:'/jigus',
             type:'POST',
             data:JSON.stringify({
                 writerId: $('#writerId').val(),
@@ -48,14 +47,19 @@
             dataType:'json',
             contentType:'application/json',
             success: d=>{
+               
                 if(d.message === 'SUCCESS'){
-                    alert('성공')
+                    alert(`성공`)
+                    location.href = '/move/jigus/list'
                 }else{
-                    alert('실패')
+                    alert(`실패`)
                 }
             },
             error: e=>{`작성실패: ${e}`}
         })
+    })
+    $('#cancel-btn').click(e=>{
+        alert('취소')
     })
 </script>
 </html>
